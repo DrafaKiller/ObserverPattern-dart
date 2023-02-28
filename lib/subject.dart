@@ -1,3 +1,3 @@
-library package_name;
+library subject;
 
 // Package exports...

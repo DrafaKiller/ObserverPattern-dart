@@ -1,13 +1,19 @@
-name: package_name
+name: subject
 description: A sample dart package from a Dart template.
 version: 0.0.1
-repository: https://github.com/DrafaKiller/PackageName-dart
-issue_tracker: https://github.com/DrafaKiller/PackageName-dart/issues
+repository: https://github.com/DrafaKiller/Subject-dart
+issue_tracker: https://github.com/DrafaKiller/Subject-dart/issues
 
 environment:
   sdk: '>=2.17.6 <3.0.0'
 
 dependencies:
+  build: ^2.3.1
+  analyzer: ^4.4.0
+  source_gen: ^1.2.6
+  code_builder: ^4.4.0
 
 dev_dependencies:
   lints: ^2.0.0
+  test: ^1.16.0
+  build_runner: ^2.3.2

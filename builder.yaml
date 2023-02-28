@@ -1,0 +1,17 @@
+builders:
+  subject:builder:
+    import: "package:subject/src/build/builder.dart"
+    builder_factories: ["builder"]
+    build_extensions: { ".dart": [".subject.g.part"] }
+    applies_builders: ["source_gen:combining_builder"]
+    build_to: cache
+    auto_apply: dependents
+
+targets:
+  $default:
+    builders:
+      subject:builder:
+        generate_for:
+          - lib/**.dart
+          - test/**.dart
+          - example/**.dart

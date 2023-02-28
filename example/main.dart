@@ -1,4 +1,4 @@
-import 'package:package_name/package_name.dart';
+import 'package:subject/subject.dart';
 
 // A pratical example of how to use the package...    
 

@@ -1,7 +1,7 @@
-[![Pub.dev package](https://img.shields.io/badge/pub.dev-package__name-blue)](https://pub.dev/packages/package_name)
-[![GitHub repository](https://img.shields.io/badge/GitHub-PackageName--dart-blue?logo=github)](https://github.com/DrafaKiller/PackageName-dart)
+[![Pub.dev package](https://img.shields.io/badge/pub.dev-package__name-blue)](https://pub.dev/packages/subject)
+[![GitHub repository](https://img.shields.io/badge/GitHub-Subject--dart-blue?logo=github)](https://github.com/DrafaKiller/Subject-dart)
 
-# Package Name
+# Subject
 
 Package description...
 
@@ -13,13 +13,13 @@ Package description...
 ## Getting Started 
 
 ```
-dart pub add package_name
+dart pub add subject
 ```
 
 And import the package:
 
 ```dart
-import 'package:package_name/package_name.dart';
+import 'package:subject/subject.dart';
 ```
 
 ## Usage
@@ -37,7 +37,7 @@ Explanation of how to use the package...
   <summary>Example <code>(/example/main.dart)</code></summary>
     
   ```dart
-  import 'package:package_name/package_name.dart';
+  import 'package:subject/subject.dart';
 
   // A pratical example of how to use the package...
   ```
@@ -45,4 +45,4 @@ Explanation of how to use the package...
 
 ## Contributing
 
-Contributions are welcome! Please open an [issue](https://github.com/DrafaKiller/PackageName-dart/issues) or [pull request](https://github.com/DrafaKiller/PackageName-dart/pulls) if you find a bug or have a feature request.
+Contributions are welcome! Please open an [issue](https://github.com/DrafaKiller/Subject-dart/issues) or [pull request](https://github.com/DrafaKiller/Subject-dart/pulls) if you find a bug or have a feature request.
