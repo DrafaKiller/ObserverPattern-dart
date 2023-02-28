@@ -1,0 +1,13 @@
+name: package_name
+description: A sample dart package from a Dart template.
+version: 0.0.1
+repository: https://github.com/DrafaKiller/PackageName-dart
+issue_tracker: https://github.com/DrafaKiller/PackageName-dart/issues
+
+environment:
+  sdk: '>=2.17.6 <3.0.0'
+
+dependencies:
+
+dev_dependencies:
+  lints: ^2.0.0
