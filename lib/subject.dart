@@ -1,3 +1,0 @@
-library subject;
-
-// Package exports...
