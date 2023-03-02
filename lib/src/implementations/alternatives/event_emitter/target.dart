@@ -1,5 +1,6 @@
 import 'package:observer/src/utils/types.dart';
 
+import 'callbacks.dart';
 import 'event.dart';
 
 mixin EventTarget<T extends Event> {
@@ -11,6 +12,7 @@ mixin EventTarget<T extends Event> {
 
   bool matches<S extends Event>({
     String? type,
+    EventCallback<S>? callback,
     bool? protected,
     bool? once,
   }) =>

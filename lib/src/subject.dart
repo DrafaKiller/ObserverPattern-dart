@@ -1,16 +1,21 @@
+import 'dart:collection';
+
 import 'observer.dart';
 
 class Subject<State> {
-  final observers = <Observer<State>>{};
+  final _observers = <Observer<State>>[];
+  List<Observer<State>> get observers => UnmodifiableListView(_observers);
+
+  /* -= Methods =- */
 
   void attach(Observer<State> observer) {
-    observers.add(observer);
-    if (observer is CoupledObserver<State>) observer.attach(this);
+    _observers.add(observer);
+    if (observer is CoupledObserver<State>) observer.attached(this);
   }
 
   void detach(Observer<State> observer) {
-    observers.remove(observer);
-    if (observer is CoupledObserver<State>) observer.detach(this);
+    _observers.remove(observer);
+    if (observer is CoupledObserver<State>) observer.detached(this);
   }
 
   void notify(State state) {

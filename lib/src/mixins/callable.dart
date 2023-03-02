@@ -9,8 +9,11 @@ mixin Callable<State> on Observer<State> {
 
   @override
   void update(Subject<State> subject, State state) {
+    super.update(subject, state);
     this(subject, state);
   }
 }
+
+/* -= Callback Definitions =- */
 
 typedef ObserverCallback<State> = void Function(Subject<State> subject, State state);

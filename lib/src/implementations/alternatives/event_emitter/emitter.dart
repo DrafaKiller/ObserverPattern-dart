@@ -7,10 +7,10 @@ import 'listener.dart';
 class EventEmitter {
   final _publisher = Publisher<Event>();
 
-  Set<EventListener> get listeners => _publisher.subscribers.cast();
+  List<EventListener> get listeners => _publisher.subscribers.cast();
 
-  void addListener(EventListener listener) => _publisher.subscribe(listener);
-  void removeListener(EventListener listener) => _publisher.unsubscribe(listener);
+  void addEventListener(EventListener listener) => _publisher.subscribe(listener);
+  void removeEventListener(EventListener listener) => _publisher.unsubscribe(listener);
 
   /* -= Input =- */
 
@@ -26,18 +26,18 @@ class EventEmitter {
 
   /* -= Output =- */
 
-  EventListener<Event<T>> on<T>(String type, [ EventCallback<T>? callback ]) {
+  EventListener<Event<T>> on<T>(String? type, [ EventCallback<T>? callback ]) {
     final listener = EventListener<Event<T>>(
       type: type,
       callback: (event) => callback?.call(event.data),
       alias: callback
     );
 
-    addListener(listener);
+    addEventListener(listener);
     return listener;
   }
 
-  EventListener<Event<T>> once<T>(String type, [ EventCallback<T>? callback ]) {
+  EventListener<Event<T>> once<T>(String? type, [ EventCallback<T>? callback ]) {
     final listener = EventListener<Event<T>>(
       type: type,
       callback: (event) => callback?.call(event.data),
@@ -45,20 +45,18 @@ class EventEmitter {
       once: true
     );
     
-    addListener(listener);
+    addEventListener(listener);
     return listener;
   }
 
-  EventListener<T> onDispatch<T extends Event>([ EventDispatchCallback<T>? callback ]) {
-    final listener = EventListener<T>(callback: callback);
-    addListener(listener);
-    return listener;
-  }
+  EventListener<Event<T>> onDispatch<T>([ EventCallback<T>? callback ]) => on(null, callback);
 
   bool off<T extends Event>({ String? type, EventCallback<T>? callback }) {
     bool removed = false;
 
-    for (final listener in listeners.where((listener) => listener.matches<T>(type: type, protected: false))) {
+    for (final listener in listeners.where(
+      (listener) => listener.matches<T>(type: type, protected: false) || (callback != null && listener.alias == callback)
+    )) {
       removed = listener.cancel() || removed;
     }
 

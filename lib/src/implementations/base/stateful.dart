@@ -1,4 +1,5 @@
 import 'package:observer/src/subject.dart';
+import 'package:observer/src/observer.dart';
 import 'package:observer/src/mixins/stateful.dart';
 
 class StatefulSubject<State> extends Subject<State> with SubjectState<State> {
@@ -8,3 +9,5 @@ class StatefulSubject<State> extends Subject<State> with SubjectState<State> {
     if (state != null) this.state = state;
   }
 }
+
+class StatefulObserver<State> with Observer<State>, ObserverState<State> {}

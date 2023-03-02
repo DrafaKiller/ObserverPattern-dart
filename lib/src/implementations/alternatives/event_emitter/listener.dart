@@ -1,7 +1,8 @@
+import 'package:observer/observer.dart';
 import 'package:observer/publisher.dart';
-import 'package:observer/src/subject.dart';
 
 import 'callbacks.dart';
+import 'emitter.dart';
 import 'event.dart';
 import 'target.dart';
 
@@ -33,5 +34,12 @@ class EventListener<T extends Event> extends Subscriber<Event> with EventTarget<
       super.update(subject, state);
       if (once) cancel();
     }
+  }
+}
+
+extension EventListenerAddTo<T extends Event, This extends EventListener<T>> on This {
+  This addTo(EventEmitter emitter) {
+    emitter.addEventListener(this);
+    return this;
   }
 }

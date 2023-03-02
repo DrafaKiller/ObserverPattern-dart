@@ -104,7 +104,7 @@ void main() {
 </details>
 
 <details>
-  <summary>Stream Observer <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/base/stream.dart"><code>(/example/base/stream.dart)</code></a></summary>
+  <summary>Stream <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/base/stream.dart"><code>(/example/base/stream.dart)</code></a></summary>
     
   ```dart
 import 'package:observer/observer.dart';

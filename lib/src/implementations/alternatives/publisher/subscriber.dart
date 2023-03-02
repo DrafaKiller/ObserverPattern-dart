@@ -1,11 +1,10 @@
 import 'package:observer/observer.dart';
 
+import 'callbacks.dart';
 
-class Subscriber<Message> extends Stream<Message> with Observer<Message>, Callable<Message>, Streamable<Message>, Cancelable<Message> {
+class Subscriber<Message> extends Stream<Message> with CoupledObserver<Message>, Callable<Message>, StreamableObserver<Message>, Cancelable<Message> {
   @override
   final SubscriberCallback<Message>? callback;
   
   Subscriber([ this.callback ]);
 }
-
-typedef SubscriberCallback<Message> = void Function(Subject<Message> subject, Message message);

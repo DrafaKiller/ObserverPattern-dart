@@ -1,17 +1,18 @@
 name: observer
 description: Observer Pattern implementation for Dart. Generalized for any type of data, using callbacks, streams and states.
 version: 0.0.1
-repository: https://github.com/DrafaKiller/Observer-dart
-issue_tracker: https://github.com/DrafaKiller/Observer-dart/issues
+repository: https://github.com/DrafaKiller/ObserverPattern-dart
+issue_tracker: https://github.com/DrafaKiller/ObserverPattern-dart/issues
 
 environment:
   sdk: '>=2.17.6 <3.0.0'
 
-dependencies:
+dependencies: 
+  analyzer: ^5.6.0
   build: ^2.3.1
-  analyzer: ^4.4.0
-  source_gen: ^1.2.6
   code_builder: ^4.4.0
+  source_gen: ^1.2.7
 
 dev_dependencies:
+  build_runner: ^2.3.3
   lints: ^1.0.0

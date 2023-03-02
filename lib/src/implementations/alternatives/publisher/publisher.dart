@@ -7,7 +7,7 @@ import 'subscriber.dart';
 class Publisher<Message> {
   final _subject = Subject<Message>();
 
-  Set<Subscriber<Message>> get subscribers => _subject.observers.cast();
+  List<Subscriber<Message>> get subscribers => _subject.observers.cast();
 
   void publish(Message message) => _subject.notify(message);
 
