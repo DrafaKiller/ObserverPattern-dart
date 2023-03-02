@@ -1,7 +1,7 @@
 import 'package:observer/src/mixins/callable.dart';
 
-import 'implementations/callback/observer.dart';
-import 'implementations/stream/observer.dart';
+import 'implementations/base/callback/observer.dart';
+import 'implementations/base/stream/observer.dart';
 import 'subject.dart';
 
 abstract class Observer<State> {

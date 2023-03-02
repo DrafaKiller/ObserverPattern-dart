@@ -13,11 +13,11 @@ export 'src/mixins/callable.dart';
 /* -= Implementations =- */
 
 // Callback
-export 'src/implementations/callback/observer.dart';
+export 'src/implementations/base/callback/observer.dart';
 
 // Stateful
-export 'src/implementations/stateful/observer.dart';
-export 'src/implementations/stateful/subject.dart';
+export 'src/implementations/base/stateful/observer.dart';
+export 'src/implementations/base/stateful/subject.dart';
 
 // Stream
-export 'src/implementations/stream/observer.dart';
+export 'src/implementations/base/stream/observer.dart';

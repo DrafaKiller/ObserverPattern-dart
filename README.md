@@ -1,5 +1,5 @@
-[![Pub.dev package](https://img.shields.io/badge/pub.dev-package__name-blue)](https://pub.dev/packages/subject)
-[![GitHub repository](https://img.shields.io/badge/GitHub-Subject--dart-blue?logo=github)](https://github.com/DrafaKiller/Subject-dart)
+[![Pub.dev package](https://img.shields.io/badge/pub.dev-observer-blue)](https://pub.dev/packages/observer)
+[![GitHub repository](https://img.shields.io/badge/GitHub-ObserverPattern--dart-blue?logo=github)](https://github.com/DrafaKiller/ObserverPattern-dart)
 
 # Observer Pattern
 
@@ -13,13 +13,13 @@ Observer Pattern implementation for Dart. Generalized solutions using callbacks,
 ## Getting Started 
 
 ```
-dart pub add subject
+dart pub add observer
 ```
 
 And import the package:
 
 ```dart
-import 'package:subject/subject.dart';
+import 'package:observer/observer.dart';
 ```
 
 ## Usage
@@ -104,7 +104,7 @@ void main() {
 </details>
 
 <details>
-  <summary>Stream Observer <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/stream.dart"><code>(/example/stream.dart)</code></a></summary>
+  <summary>Stream Observer <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/base/stream.dart"><code>(/example/base/stream.dart)</code></a></summary>
     
   ```dart
 import 'package:observer/observer.dart';
@@ -126,7 +126,7 @@ void main() {
 </details>
 
 <details>
-  <summary>Stateful <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/stateful.dart"><code>(/example/stateful.dart)</code></a></summary>
+  <summary>Stateful <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/base/stateful.dart"><code>(/example/base/stateful.dart)</code></a></summary>
     
   ```dart
 import 'package:observer/observer.dart';
@@ -207,7 +207,7 @@ void main() {
 </details>
 
 <details>
-  <summary>Event Emitter <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/alternatives/event_emitter.dart"><code>(/example/alternatives/event_emitter.dart)</code></a></summary>
+  <summary>EventEmitter <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/alternatives/event_emitter.dart"><code>(/example/alternatives/event_emitter.dart)</code></a></summary>
     
   ```dart
 import 'package:observer/event_emitter.dart';
