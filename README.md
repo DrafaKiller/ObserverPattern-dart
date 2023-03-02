@@ -206,6 +206,28 @@ void main() {
   ```
 </details>
 
+<details>
+  <summary>Event Emitter <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/alternatives/event_emitter.dart"><code>(/example/alternatives/event_emitter.dart)</code></a></summary>
+    
+  ```dart
+import 'package:observer/event_emitter.dart';
+
+void main() {
+  final events = EventEmitter();
+
+  events.on('message', (String data) => print('String: $data'));
+  events.on('message', (int data) => print('Integer: $data'));
+
+  events.emit('message', 'Hello World');
+  events.emit('message', 42);
+
+  // [Output]
+  // String: Hello World
+  // Integer: 42
+}
+  ```
+</details>
+
 
 ## Contributing
 
