@@ -1,2 +1,2 @@
-export 'src/implementations/publisher/publisher.dart';
-export 'src/implementations/publisher/subscriber.dart';
+export 'src/implementations/alternatives/publisher/publisher.dart';
+export 'src/implementations/alternatives/publisher/subscriber.dart';
