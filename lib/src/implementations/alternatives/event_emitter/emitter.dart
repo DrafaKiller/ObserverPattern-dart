@@ -1,4 +1,4 @@
-import 'package:observer/publisher.dart';
+import 'package:subject/publisher.dart';
 
 import 'callbacks.dart';
 import 'event.dart';

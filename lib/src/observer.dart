@@ -1,7 +1,7 @@
 import 'dart:collection';
 
-import 'package:observer/src/implementations/base/stream.dart';
-import 'package:observer/src/mixins/callable.dart';
+import 'package:subject/src/implementations/base/stream.dart';
+import 'package:subject/src/mixins/callable.dart';
 
 import 'implementations/base/callback.dart';
 import 'subject.dart';

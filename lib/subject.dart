@@ -5,5 +5,5 @@ export 'src/build/generator.dart' show SubjectExecutor, SubjectAccessorCallback,
 
 /* -= Builder dependencies =- */
 
-export 'package:observer/observer.dart';
-export 'package:observer/event_emitter.dart';
+export 'package:subject/observer.dart';
+export 'package:subject/event_emitter.dart';

@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:code_builder/code_builder.dart';
-import 'package:observer/src/utils/analyzer.dart';
-import 'package:observer/src/utils/code_analyzer.dart';
-import 'package:observer/src/utils/string.dart';
-import 'package:observer/subject.dart';
+import 'package:subject/src/utils/analyzer.dart';
+import 'package:subject/src/utils/code_analyzer.dart';
+import 'package:subject/src/utils/string.dart';
+import 'package:subject/subject.dart';
 import 'package:source_gen/source_gen.dart';
 
 part 'event.dart';

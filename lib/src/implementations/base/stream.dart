@@ -1,9 +1,9 @@
 
 import 'dart:async';
 
-import 'package:observer/src/mixins/streamable.dart';
-import 'package:observer/src/observer.dart';
-import 'package:observer/src/subject.dart';
+import 'package:subject/src/mixins/streamable.dart';
+import 'package:subject/src/observer.dart';
+import 'package:subject/src/subject.dart';
 
 /* -= Subject =- */
 

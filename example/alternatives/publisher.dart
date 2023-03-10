@@ -1,4 +1,4 @@
-import 'package:observer/publisher.dart';
+import 'package:subject/publisher.dart';
 
 void main() {
   final publisher = Publisher<String>();

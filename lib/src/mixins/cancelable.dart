@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:observer/observer.dart';
+import 'package:subject/observer.dart';
 
 mixin Cancelable<State> on CoupledObserver<State> {
   final _completer = Completer<void>.sync();

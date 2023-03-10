@@ -1,6 +1,6 @@
-import 'package:observer/src/subject.dart';
-import 'package:observer/src/observer.dart';
-import 'package:observer/src/mixins/stateful.dart';
+import 'package:subject/src/subject.dart';
+import 'package:subject/src/observer.dart';
+import 'package:subject/src/mixins/stateful.dart';
 
 class StatefulSubject<State> extends Subject<State> with SubjectState<State> {
   @override final bool notifyOnAttach;

@@ -19,7 +19,7 @@ dart pub add observer
 And import the package:
 
 ```dart
-import 'package:observer/observer.dart';
+import 'package:subject/observer.dart';
 ```
 
 ## Usage
@@ -34,7 +34,7 @@ Explanation of how to use the package...
 ## Example
 
 ```dart
-import 'package:observer/observer.dart';
+import 'package:subject/observer.dart';
 
 void main() {
   final subject = Subject<String>();
@@ -68,7 +68,7 @@ void main() {
   <summary>Extending <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/extending.dart"><code>(/example/extending.dart)</code></a></summary>
     
   ```dart
-import 'package:observer/observer.dart';
+import 'package:subject/observer.dart';
 
 class User extends Subject<String> {
   final String name;
@@ -107,7 +107,7 @@ void main() {
   <summary>Stream <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/base/stream.dart"><code>(/example/base/stream.dart)</code></a></summary>
     
   ```dart
-import 'package:observer/observer.dart';
+import 'package:subject/observer.dart';
 
 void main() {
   final subject = Subject<String>();
@@ -129,7 +129,7 @@ void main() {
   <summary>Stateful <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/base/stateful.dart"><code>(/example/base/stateful.dart)</code></a></summary>
     
   ```dart
-import 'package:observer/observer.dart';
+import 'package:subject/observer.dart';
 
 /* -= Stateful - Subject =- */
 
@@ -178,7 +178,7 @@ void main() {
   <summary>Publisher <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/alternatives/publisher.dart"><code>(/example/alternatives/publisher.dart)</code></a></summary>
     
   ```dart
-import 'package:observer/publisher.dart';
+import 'package:subject/publisher.dart';
 
 void main() {
   final publisher = Publisher<String>();
@@ -210,7 +210,7 @@ void main() {
   <summary>EventEmitter <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/alternatives/event_emitter.dart"><code>(/example/alternatives/event_emitter.dart)</code></a></summary>
     
   ```dart
-import 'package:observer/event_emitter.dart';
+import 'package:subject/event_emitter.dart';
 
 void main() {
   final events = EventEmitter();

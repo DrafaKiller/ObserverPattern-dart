@@ -1,4 +1,4 @@
-import 'package:observer/observer.dart';
+import 'package:subject/observer.dart';
 
 mixin Callable<State> on Observer<State> {
   ObserverCallback<State>? get callback;

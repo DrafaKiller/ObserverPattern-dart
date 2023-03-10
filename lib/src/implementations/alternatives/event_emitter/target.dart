@@ -1,4 +1,4 @@
-import 'package:observer/src/utils/types.dart';
+import 'package:subject/src/utils/types.dart';
 
 import 'callbacks.dart';
 import 'event.dart';

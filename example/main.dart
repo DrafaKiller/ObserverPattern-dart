@@ -1,4 +1,4 @@
-import 'package:observer/observer.dart';
+import 'package:subject/observer.dart';
 
 void main() {
   final subject = Subject<String>();

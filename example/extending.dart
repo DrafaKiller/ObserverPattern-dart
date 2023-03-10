@@ -1,4 +1,4 @@
-import 'package:observer/observer.dart';
+import 'package:subject/observer.dart';
 
 class User extends Subject<String> {
   final String name;

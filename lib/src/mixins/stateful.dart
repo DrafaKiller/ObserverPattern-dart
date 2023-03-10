@@ -1,4 +1,4 @@
-import 'package:observer/src/observer.dart';
+import 'package:subject/src/observer.dart';
 
 import '../subject.dart';
 

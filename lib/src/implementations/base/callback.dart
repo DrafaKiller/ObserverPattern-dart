@@ -1,5 +1,5 @@
-import 'package:observer/src/observer.dart';
-import 'package:observer/src/mixins/callable.dart';
+import 'package:subject/src/observer.dart';
+import 'package:subject/src/mixins/callable.dart';
 
 class CallbackObserver<State> with Observer<State>, Callable<State> {
   @override 

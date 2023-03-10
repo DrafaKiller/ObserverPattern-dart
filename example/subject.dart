@@ -1,4 +1,4 @@
-import 'package:observer/subject.dart';
+import 'package:subject/subject.dart';
 
 part 'subject.g.dart';
 

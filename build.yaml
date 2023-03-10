@@ -1,6 +1,6 @@
 builders:
   observer:subject:
-    import: "package:observer/src/build/builder.dart"
+    import: "package:subject/src/build/builder.dart"
     builder_factories: ["subject"]
     build_extensions: { ".dart": [".subject.g.part"] }
     applies_builders: ["source_gen:combining_builder"]

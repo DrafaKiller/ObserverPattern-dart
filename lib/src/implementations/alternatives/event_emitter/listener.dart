@@ -1,5 +1,5 @@
-import 'package:observer/observer.dart';
-import 'package:observer/publisher.dart';
+import 'package:subject/observer.dart';
+import 'package:subject/publisher.dart';
 
 import 'callbacks.dart';
 import 'emitter.dart';

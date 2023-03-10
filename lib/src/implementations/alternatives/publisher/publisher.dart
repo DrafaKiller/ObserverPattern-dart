@@ -1,6 +1,6 @@
 // Programming Pattern: https://en.wikipedia.org/wiki/Publish–subscribe_pattern
 
-import 'package:observer/src/subject.dart';
+import 'package:subject/src/subject.dart';
 
 import 'subscriber.dart';
 
