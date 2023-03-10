@@ -1,49 +1,206 @@
 [![Pub.dev package](https://img.shields.io/badge/pub.dev-observer-blue)](https://pub.dev/packages/observer)
 [![GitHub repository](https://img.shields.io/badge/GitHub-ObserverPattern--dart-blue?logo=github)](https://github.com/DrafaKiller/ObserverPattern-dart)
 
-# Observer Pattern
+# Subject
 
-Observer Pattern implementation for Dart. Generalized solutions using callbacks, streams and states.
+Observer Pattern implementation for Dart, using callbacks, streams and states.
+Subject code generator with annotations, to automatically generate an observable interface for any class.
+
+Alternative implementations are available, such as **Publisher** and **EventEmitter**.
 
 ## Features
 
-- A list of features provided by the package
-- More...
+- Subject and Observer, for base implementation
+- Callback, Stream and Stateful mixins, to extend the Subject and Observer classes
+- `@subject` and `@observe` annotations, to generate an observable interface for any class
 
 ## Getting Started 
 
 ```
-dart pub add observer
+dart pub add subject
 ```
 
 And import the package:
 
 ```dart
-import 'package:subject/observer.dart';
+import 'package:subject/subject.dart';
 ```
 
 ## Usage
 
-Explanation of how to use the package...
+Create a subject by initializing or extending **Subject**, you can set the type of the state that will be passed to the observers:
 
 ```dart
-// How to use the features of the package...
-// Divided into sections.
+final subject = Subject<String>();
+```
+
+Create an observer and attach it to the subject.
+An observer can be created using `Observer` or `Observer.stream`:
+
+```dart
+final observer = Observer<String>((subject, state) => print('Observer Callback: $state'));
+
+final observerStream = Observer.stream<String>()..listen((state) => print('Observer Stream: $state'));
+
+final observerCoupled = Observer.coupled<String>(
+  attached: (subject, observer) => print('Observer Attached'),
+  detached: (subject, observer) => print('Observer Detached'),
+);
+
+final observerStateful = Observer.stateful<String>();
+
+subject.attach(observer);
+subject.attach(observerStream);
+```
+
+Notify the subject to update the state and notify the observers:
+
+```dart
+subject.notify('Hello World!');
+```
+
+## Subjects and Observers
+
+You have different bases to create a subject and observer, each with its features:
+
+### Callback - `Observer`
+
+```dart
+final subject = Subject<String>();
+final observer = CallbackObserver<String>((subject, state) => print('Observer: $state'));
+
+subject.attach(observer);
+subject.notify('Hello World!');
+```
+
+### Stream - `Subject.stream` / `Observer.stream`
+
+```dart
+final subject = StreamSubject<String>(sync: true);
+final observer = StreamObserver<String>(sync: true);
+
+subject.listen((state) => print('Subject: $state'));
+observer.listen((state) => print('Observer: $state'));
+
+subject.attach(observer);
+subject.notify('Hello World!');
+```
+
+### Coupled - `Observer.coupled`
+
+```dart
+final subject = Subject<String>();
+final observer = CallbackCoupledObserver<String>(
+  attached: (subject, observer) => print('Observer Attached'),
+  detached: (subject, observer) => print('Observer Detached'),
+);
+
+subject.attach(observer);
+subject.notify('Hello World!');
+```
+
+### Stateful - `Subject.stateful` / `Observer.stateful`
+
+```dart
+final subject = StatefulSubject<String>(state: 'Initial State', notifyOnAttach: true);
+final observer = StatefulObserver<String>();
+
+subject.attach(observer);
+subject.notify('Hello World!');
+
+print('Subject State: ${subject.state}');
+```
+
+## Mixins
+
+You can create your own subject and observer classes, by extending the base classes and mixing the desired features:
+
+### Subject
+- **StreamableSubject** - Transforms the subject into a stream, subscriptions are plugged into the subject as **StreamObserver**s
+- **SinkableSubject** - Transforms the subject into a sink, which notifies the subject when a value is added
+- **SubjectState** - Allows the subject to have a persistent state
+
+### Observer
+- **Callbackable** - Allows the observer to be instantiated with a callback
+- **StreamableObserver** - Transforms the observer into a stream, which can be listened to
+- **ObserverState** - Allows the observer to have a persistent state
+- **Cancelable** - Allows the observer to be canceled, which will detach it from the subject
+
+## Code Generation
+
+With the `@subject` and `@observe` annotations, you can generate an observable interface for any class automatically.
+You can listen to methods calls, and changes in properties, using the `.on()` and `.onBefore()` methods.
+
+### Annotation `@subject`
+
+By using the `@subject` annotation, you can create a subject class that generates an observable interface for the annotated class.
+The generated class will be named `${className}Subject`.
+
+```dart
+@subject
+class User {
+  final String name;
+  String? thought;
+
+  User(this.name);
+
+  void say(String message) => print('$name says "$message"');
+}
+```
+
+The `@subject` annotation will create a `UserSubject` class that wraps all the annotated methods and properties in a `notify` call, making them observable.
+
+### Annotation `@observe`
+
+The `@observe` annotation is used to indicate which methods and properties should be wrapped when generating the observable interface.
+You can use it to specify which elements should be observable and which should not.
+
+```dart
+class User {
+  final String name;
+  String? thought;
+
+  User(this.name);
+
+  @observe
+  void say(String message) => print('$name says "$message"');
+}
+```
+
+In the `User` class, only the `say` method is annotated with `@observe`, which means only it will be observable in the generated `UserSubject` class.
+The other elements of the class will not be included in the generated class.
+
+The `@observe` annotation overrides the `@subject` annotation, so if you use both, only the elements annotated with `@observe` will be observable.
+
+### Listening to events
+
+To listen to events, you can use the `.on()` and `.onBefore()` methods, which are included in the generated subject class.
+The `.on()` method contains all the generated methods and setters, making it easy to listen to events for the annotated class.
+
+```dart
+final user = UserSubject('John');
+
+user.on(
+  say: (message) => print('User said "$message"'),
+);
 ```
 
 ## Example
 
-```dart
+<details open>
+  <summary>Subject / Observer <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/main.dart">(GitHub)</a></summary>
+    
+  ```dart
 import 'package:subject/observer.dart';
 
 void main() {
   final subject = Subject<String>();
 
-  final observer = Observer<String>((subject, state) => print('Observer: $state'));
+  final observer = Observer<String>((subject, state) => print('Observer 1: $state'));
 
   subject.attach(observer);
-  subject.attach(Observer((subject, state) => print('Observer 1: $state')));
-  subject.attach(Observer.stream()..listen((state) => print('Observer 2: $state')));
+  subject.attach(Observer((subject, state) => print('Observer 2: $state')));
+  subject.attach(Observer.stream()..listen((state) => print('Observer 3: $state')));
 
   subject.notify('Hello World!');
   print('There are ${subject.observers.length} observers attached to the subject.');
@@ -52,20 +209,59 @@ void main() {
   subject.notify('Hello World, again!');
 
   /* [Output]
-    Observer: Hello World!
     Observer 1: Hello World!
     Observer 2: Hello World!
+    Observer 3: Hello World!
 
     There are 3 observers attached to the subject.
 
-    Observer 1: Hello World, again!
     Observer 2: Hello World, again!
+    Observer 3: Hello World, again!
   */
 }
-```
+  ```
+</details>
 
 <details>
-  <summary>Extending <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/extending.dart"><code>(/example/extending.dart)</code></a></summary>
+  <summary>Code Generator <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/build.dart">(GitHub)</a></summary>
+    
+  ```dart
+import 'package:subject/subject.dart';
+
+part 'subject.g.dart';
+
+@subject
+class User<T> {
+  final String name;
+
+  String? thought;
+  T value;
+
+  User(this.name, this.value);
+
+  // @observe
+  void say(String message) => print('$name says "$message"');
+}
+
+void main() {
+  final user = UserSubject('John', 4);
+  
+  user.on(
+    say: (message) => print('User said "$message"'),
+  );
+
+  user.say('Hello world');
+
+  /* [Output]
+    John says "Hello world"
+    User said "Hello world"
+  */
+}
+  ```
+</details>
+
+<details>
+  <summary>Extending <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/extending.dart">(GitHub)</a></summary>
     
   ```dart
 import 'package:subject/observer.dart';
@@ -104,19 +300,19 @@ void main() {
 </details>
 
 <details>
-  <summary>Stream <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/base/stream.dart"><code>(/example/base/stream.dart)</code></a></summary>
+  <summary>Sink / Stream <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/base/async.dart">(GitHub)</a></summary>
     
   ```dart
 import 'package:subject/observer.dart';
 
 void main() {
-  final subject = Subject<String>();
+  final subject = Subject.sink<String>();
   
   final observer = Observer.stream<String>();
   observer.listen((message) => print('Observer: "$message"'));
   
   subject.attach(observer);
-  subject.notify('Hello World!');
+  subject.add('Hello World!');
 
   /* [Output]
     Observer: "Hello World!"
@@ -126,7 +322,7 @@ void main() {
 </details>
 
 <details>
-  <summary>Stateful <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/base/stateful.dart"><code>(/example/base/stateful.dart)</code></a></summary>
+  <summary>Stateful <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/base/stateful.dart">(GitHub)</a></summary>
     
   ```dart
 import 'package:subject/observer.dart';
@@ -175,7 +371,7 @@ void main() {
 </details>
 
 <details>
-  <summary>Publisher <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/alternatives/publisher.dart"><code>(/example/alternatives/publisher.dart)</code></a></summary>
+  <summary>Publisher <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/alternatives/publisher.dart">(GitHub)</a></summary>
     
   ```dart
 import 'package:subject/publisher.dart';
@@ -207,7 +403,7 @@ void main() {
 </details>
 
 <details>
-  <summary>EventEmitter <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/alternatives/event_emitter.dart"><code>(/example/alternatives/event_emitter.dart)</code></a></summary>
+  <summary>EventEmitter <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/alternatives/event_emitter.dart">(GitHub)</a></summary>
     
   ```dart
 import 'package:subject/event_emitter.dart';
@@ -215,8 +411,10 @@ import 'package:subject/event_emitter.dart';
 void main() {
   final events = EventEmitter();
 
-  events.on('message', (String data) => print('String: $data'));
+  final listener = events.on('message', (String data) => print('String: $data'));
   events.on('message', (int data) => print('Integer: $data'));
+
+  listener.listen((event) => print('Event: $event'));
 
   events.emit('message', 'Hello World');
   events.emit('message', 42);

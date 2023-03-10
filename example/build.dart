@@ -1,6 +1,6 @@
 import 'package:subject/subject.dart';
 
-part 'subject.g.dart';
+part 'build.g.dart';
 
 @subject
 class User<T> {

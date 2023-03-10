@@ -5,10 +5,11 @@ export 'src/subject.dart';
 
 /* -= Mixins =- */
 
-export 'src/mixins/callable.dart';
+export 'src/mixins/callbackable.dart';
 export 'src/mixins/cancelable.dart';
 export 'src/mixins/stateful.dart';
-export 'src/mixins/streamable.dart';
+export 'src/mixins/async/streamable.dart';
+export 'src/mixins/async/sinkable.dart';
 
 /* -= Implementations =- */
 

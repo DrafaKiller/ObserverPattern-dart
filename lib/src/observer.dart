@@ -1,9 +1,10 @@
 import 'dart:collection';
 
-import 'package:subject/src/implementations/base/stream.dart';
-import 'package:subject/src/mixins/callable.dart';
+import 'package:subject/src/mixins/callbackable.dart';
 
 import 'implementations/base/callback.dart';
+import 'implementations/base/stateful.dart';
+import 'implementations/base/stream.dart';
 import 'subject.dart';
 
 /* -= Uncoupled Observer =- */
@@ -11,8 +12,18 @@ import 'subject.dart';
 abstract class Observer<State> {
   void update(Subject<State> subject, State state) {}
 
+  /* -= Alternative Implementations =- */
+
   factory Observer(ObserverCallback<State> callback) = CallbackObserver<State>;
+  
+  factory Observer.coupled({
+    CoupledObserverCallback<State>? attached,
+    CoupledObserverCallback<State>? detached
+  }) = CallbackCoupledObserver<State>;
+
   static StreamObserver<State> stream<State>() => StreamObserver<State>();
+
+  static StatefulObserver<State> stateful<State>() => StatefulObserver<State>();
 }
 
 /* -= Coupled Observer =- */

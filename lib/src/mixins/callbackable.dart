@@ -1,6 +1,6 @@
 import 'package:subject/observer.dart';
 
-mixin Callable<State> on Observer<State> {
+mixin Callbackable<State> on Observer<State> {
   ObserverCallback<State>? get callback;
 
   void call(Subject<State> subject, State state) => callback?.call(subject, state);

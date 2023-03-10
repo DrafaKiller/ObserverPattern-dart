@@ -1,7 +1,7 @@
 name: subject
 description: >-
   Observer Pattern implementation for Dart, using callbacks, streams, etc...
-  Subject code generator with annotations, to automatically generate a observable interface for any class.
+  Subject code generator with annotations, to automatically generate an observable interface for any class.
 version: 0.0.1
 repository: https://github.com/DrafaKiller/ObserverPattern-dart
 issue_tracker: https://github.com/DrafaKiller/ObserverPattern-dart/issues
