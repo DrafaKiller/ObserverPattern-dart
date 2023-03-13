@@ -1,5 +1,5 @@
 builders:
-  observer:subject:
+  subject:build:
     import: "package:subject/src/build/builder.dart"
     builder_factories: ["subject"]
     build_extensions: { ".dart": [".subject.g.part"] }
@@ -10,7 +10,7 @@ builders:
 targets:
   $default:
     builders:
-      observer:subject:
+      subject:build:
         generate_for:
           - lib/**.dart
           - test/**.dart

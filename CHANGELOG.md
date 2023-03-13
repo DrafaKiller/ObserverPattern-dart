@@ -1,3 +1,8 @@
+## 0.1.1
+
+Fixed:
+- Builder name changed from `observer:subject` to `subject:build`
+
 ## 0.1.0
 
 Added:
