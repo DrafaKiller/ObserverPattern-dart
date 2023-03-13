@@ -31,7 +31,9 @@ void main() {
 }
 ```
 
-Click here to see how to setup the [Code Generation](#code-generation).
+<p align="center">
+  Click here to see how to setup the <a href="#code-generation">Code Generation</a>.
+</p>
 
 ## Features
 
