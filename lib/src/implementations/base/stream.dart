@@ -19,6 +19,5 @@ class StreamObserver<State> extends Stream<State> with CoupledObserver<State>, S
   @override final bool sync;
   @override final bool autoDispose;
 
-
   StreamObserver({ this.sync = true, this.autoDispose = false });
 }

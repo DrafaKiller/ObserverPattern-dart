@@ -8,6 +8,8 @@ import '../../subject.dart';
 
 mixin StreamableSubject<State> on Subject<State> implements Stream<State> {
   late final StreamController<State> _controller = StreamController<State>.broadcast(sync: sync);
+
+  /// Whether the stream is synchronous.
   bool get sync => true;
 
   /* -= Subject =- */
@@ -31,7 +33,10 @@ mixin StreamableSubject<State> on Subject<State> implements Stream<State> {
 /* -= Observer =- */
 
 mixin StreamableObserver<State> on CoupledObserver<State> implements Stream<State> {
+  /// Whether the stream is synchronous.
   bool get sync => true;
+
+  /// Whether the observer should be detached from the subject when the stream is closed.
   bool get autoDispose => false;
 
   late final StreamController<State> _controller = StreamController<State>.broadcast(
