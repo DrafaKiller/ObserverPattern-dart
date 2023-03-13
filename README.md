@@ -3,7 +3,7 @@
 
 # Observer Pattern - Subject
 
-Observer Pattern implementation for Dart, using callbacks, streams and states.
+[Observer Pattern](https://en.wikipedia.org/wiki/Observer_pattern) implementation for Dart, using callbacks, streams and states.
 Subject code generator with annotations, to automatically generate an observable interface for any class.
 
 ```dart
