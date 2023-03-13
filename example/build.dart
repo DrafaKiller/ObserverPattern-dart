@@ -6,6 +6,7 @@ part 'build.g.dart';
 class User<T> {
   final String name;
 
+  // @dontObserve
   String? thought;
   T value;
 

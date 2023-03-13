@@ -150,9 +150,18 @@ You can create your own subject and observer classes, by extending the base clas
 With the `@subject` and `@observe` annotations, you can generate an observable interface for any class automatically.
 You can listen to methods calls, and changes in properties, using the `.on()` and `.onBefore()` methods.
 
+Use the following command to continuously generate the code:
+```
+dart run build_runner watch -d
+```
+Or, using Flutter:
+```
+flutter pub get && flutter pub run build_runner watch -d
+```
+
 ### Annotation `@subject`
 
-By using the `@subject` annotation, you can create a subject class that generates an observable interface for the annotated class.
+By using the `@subject` annotation you can generate a subject class for the annotated class.
 The generated class will be named `${className}Subject`.
 
 ```dart
@@ -167,12 +176,13 @@ class User {
 }
 ```
 
-The `@subject` annotation will create a `UserSubject` class that wraps all the annotated methods and properties in a `notify` call, making them observable.
+The `@subject` annotation will create a `UserSubject` class that wraps all methods and properties in a `notify` call, making them observable.
+
+You can use the `@dontObserve` annotation to exclude elements from the generated subject class.
 
 ### Annotation `@observe`
 
-The `@observe` annotation is used to indicate which methods and properties should be wrapped when generating the observable interface.
-You can use it to specify which elements should be observable and which should not.
+The `@observe` annotation is used to indicate which methods and properties should be observable in the generated subject class.
 
 ```dart
 class User {
@@ -186,8 +196,8 @@ class User {
 }
 ```
 
-In the `User` class, only the `say` method is annotated with `@observe`, which means only it will be observable in the generated `UserSubject` class.
-The other elements of the class will not be included in the generated class.
+In the `User` class, only the `say` method is annotated with `@observe`, which means it will be the only observable element in the generated `UserSubject` class.
+The other elements of the class will not be observable.
 
 The `@observe` annotation overrides the `@subject` annotation, so if you use both, only the elements annotated with `@observe` will be observable.
 
@@ -253,6 +263,7 @@ part 'build.g.dart';
 class User<T> {
   final String name;
 
+  // @dontObserve
   String? thought;
   T value;
 

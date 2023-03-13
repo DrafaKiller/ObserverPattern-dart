@@ -20,16 +20,31 @@ class SubjectGenerator extends Generator {
     for (final element in library.allElements) {
       if (element is! ClassElement) continue;
       
-      final methods = element.methods.where((method) => method.hasStringAnnotation(observe));
-      final accessors = element.accessors.where((accessor) => accessor.variable.hasStringAnnotation(observe));
+      final observeMethods = element.methods.where(
+        (method) =>
+          method.hasStringAnnotation(observe) &&
+          !method.hasStringAnnotation(dontObserve)
+      );
+      
+      final observeAccessors = element.accessors.where(
+        (accessor) =>
+          accessor.variable.hasStringAnnotation(observe) &&
+          !accessor.variable.hasStringAnnotation(dontObserve)
+      );
 
-      if (methods.isNotEmpty || accessors.isNotEmpty) {
-        output.writeln(createSubject(element, methods: methods, accessors: accessors));
+      if (observeMethods.isNotEmpty || observeAccessors.isNotEmpty) {
+        output.writeln(createSubject(element, methods: observeMethods, accessors: observeAccessors));
         continue;
       }
       
       if (element.hasStringAnnotation(subject)) {
-        output.writeln(createSubject(element, methods: element.methods, accessors: element.accessors));
+        output.writeln(
+          createSubject(
+            element,
+            methods: element.methods.where((method) => !method.hasStringAnnotation(dontObserve)),
+            accessors: element.accessors.where((accessor) => !accessor.variable.hasStringAnnotation(dontObserve)),
+          )
+        );
         continue;
       }
     }
