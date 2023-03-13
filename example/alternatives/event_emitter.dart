@@ -8,10 +8,10 @@ void main() {
 
   listener.listen((event) => print('Event: $event'));
 
-  events.emit('message', 'Hello World');
+  events.emit('message', 'Hello World!');
   events.emit('message', 42);
 
   // [Output]
-  // String: Hello World
+  // String: Hello World!
   // Integer: 42
 }

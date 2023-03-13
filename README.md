@@ -22,11 +22,11 @@ void main() {
     say: (message) => print('User says "$message"')
   );
   
-  user.say('Hello world!');
+  user.say('Hello World!');
 
   /* [Output]
-    John says "Hello world!"
-    User said "Hello world!"
+    John says "Hello World!"
+    User said "Hello World!"
   */
 }
 ```
@@ -289,12 +289,12 @@ void main() {
     thought: (value, previous) => print('User thought "$value"'),
   );
 
-  user.say('Hello world!');
+  user.say('Hello World!');
   user.thought = 'I am thinking...';
 
   /* [Output]
-    John says "Hello world!"
-    User said "Hello world!"
+    John says "Hello World!"
+    User said "Hello World!"
     User thought "I am thinking..."
   */
 }
@@ -457,11 +457,11 @@ void main() {
 
   listener.listen((event) => print('Event: $event'));
 
-  events.emit('message', 'Hello World');
+  events.emit('message', 'Hello World!');
   events.emit('message', 42);
 
   // [Output]
-  // String: Hello World
+  // String: Hello World!
   // Integer: 42
 }
   ```

@@ -24,12 +24,12 @@ void main() {
     thought: (value, previous) => print('User thought "$value"'),
   );
 
-  user.say('Hello world!');
+  user.say('Hello World!');
   user.thought = 'I am thinking...';
 
   /* [Output]
-    John says "Hello world!"
-    User said "Hello world!"
+    John says "Hello World!"
+    User said "Hello World!"
     User thought "I am thinking..."
   */
 }
