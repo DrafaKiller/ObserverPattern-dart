@@ -6,12 +6,32 @@
 Observer Pattern implementation for Dart, using callbacks, streams and states.
 Subject code generator with annotations, to automatically generate an observable interface for any class.
 
-Alternative implementations are available, such as **Publisher** and **EventEmitter**.
+```dart
+@subject
+class User {
+  final String name;
+  String? thought;
+
+  User(this.name);
+
+  void say(String message) => print('$name says "$message"');
+}
+
+void main() {
+  final user = UserSubject('John');
+  user.on(
+    say: (message) => print('User says "$message"')
+  );
+  
+  user.say('Hello World!');
+}
+```
 
 ## Features
 
 - Subject and Observer, for base implementation
 - Callback, Stream and Stateful mixins, to extend the Subject and Observer classes
+- Alternative implementations, such as **Publisher** and **EventEmitter**
 - `@subject` and `@observe` annotations, to generate an observable interface for any class
 
 ## Getting Started 
