@@ -1,7 +1,7 @@
-[![Pub.dev package](https://img.shields.io/badge/pub.dev-observer-blue)](https://pub.dev/packages/observer)
+[![Pub.dev package](https://img.shields.io/badge/pub.dev-subject-blue)](https://pub.dev/packages/subject)
 [![GitHub repository](https://img.shields.io/badge/GitHub-ObserverPattern--dart-blue?logo=github)](https://github.com/DrafaKiller/ObserverPattern-dart)
 
-# Subject
+# Observer Pattern - Subject
 
 Observer Pattern implementation for Dart, using callbacks, streams and states.
 Subject code generator with annotations, to automatically generate an observable interface for any class.
