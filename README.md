@@ -207,7 +207,7 @@ user.on(
 ## Example
 
 <details open>
-  <summary>Subject / Observer <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/main.dart">(GitHub)</a></summary>
+  <summary>Subject / Observer <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/main.dart">(View on GitHub)</a></summary>
     
   ```dart
 import 'package:subject/observer.dart';
@@ -242,7 +242,7 @@ void main() {
 </details>
 
 <details>
-  <summary>Code Generator <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/build.dart">(GitHub)</a></summary>
+  <summary>Code Generator <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/build.dart">(View on GitHub)</a></summary>
     
   ```dart
 import 'package:subject/subject.dart';
@@ -280,7 +280,7 @@ void main() {
 </details>
 
 <details>
-  <summary>Extending <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/extending.dart">(GitHub)</a></summary>
+  <summary>Extending <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/extending.dart">(View on GitHub)</a></summary>
     
   ```dart
 import 'package:subject/observer.dart';
@@ -319,7 +319,7 @@ void main() {
 </details>
 
 <details>
-  <summary>Sink / Stream <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/base/async.dart">(GitHub)</a></summary>
+  <summary>Sink / Stream <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/base/async.dart">(View on GitHub)</a></summary>
     
   ```dart
 import 'package:subject/observer.dart';
@@ -341,7 +341,7 @@ void main() {
 </details>
 
 <details>
-  <summary>Stateful <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/base/stateful.dart">(GitHub)</a></summary>
+  <summary>Stateful <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/base/stateful.dart">(View on GitHub)</a></summary>
     
   ```dart
 import 'package:subject/observer.dart';
@@ -390,7 +390,7 @@ void main() {
 </details>
 
 <details>
-  <summary>Publisher <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/alternatives/publisher.dart">(GitHub)</a></summary>
+  <summary>Publisher <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/alternatives/publisher.dart">(View on GitHub)</a></summary>
     
   ```dart
 import 'package:subject/publisher.dart';
@@ -422,7 +422,7 @@ void main() {
 </details>
 
 <details>
-  <summary>EventEmitter <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/alternatives/event_emitter.dart">(GitHub)</a></summary>
+  <summary>EventEmitter <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/main/example/alternatives/event_emitter.dart">(View on GitHub)</a></summary>
     
   ```dart
 import 'package:subject/event_emitter.dart';
