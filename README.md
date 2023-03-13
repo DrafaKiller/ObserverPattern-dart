@@ -10,8 +10,6 @@ Subject code generator with annotations, to automatically generate an observable
 @subject
 class User {
   final String name;
-  String? thought;
-
   User(this.name);
 
   void say(String message) => print('$name says "$message"');
@@ -19,11 +17,17 @@ class User {
 
 void main() {
   final user = UserSubject('John');
+
   user.on(
     say: (message) => print('User says "$message"')
   );
   
   user.say('Hello World!');
+
+  /* [Output]
+    John says "Hello world"
+    User said "Hello world"
+  */
 }
 ```
 
