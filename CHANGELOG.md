@@ -1,3 +1,8 @@
+## 0.1.2
+
+Changed:
+- Documentation to help with setting up the Code Generator
+
 ## 0.1.1
 
 Fixed:

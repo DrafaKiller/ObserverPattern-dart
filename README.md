@@ -6,6 +6,8 @@
 [Observer Pattern](https://en.wikipedia.org/wiki/Observer_pattern) implementation for Dart, using callbacks, streams and states.
 Subject code generator with annotations, to automatically generate an observable interface for any class.
 
+Click here to see how to setup the [Code Generation](#code-generation).
+
 ```dart
 @subject
 class User {
@@ -154,14 +156,18 @@ You can create your own subject and observer classes, by extending the base clas
 With the `@subject` and `@observe` annotations, you can generate an observable interface for any class automatically.
 You can listen to methods calls, and changes in properties, using the `.on()` and `.onBefore()` methods.
 
-Use the following command to continuously generate the code:
+Use the following commands to continuously generate the code:
 ```
+dart pub add build_runner -d
 dart run build_runner watch -d
 ```
 Or, using Flutter:
 ```
-flutter pub get && flutter pub run build_runner watch -d
+flutter pub add build_runner -d
+flutter pub run build_runner watch -d
 ```
+
+These commands will add the `build_runner` package as a development dependency and run it with the `watch -d` command, or `build -d` for only once. You only need to add it one time.
 
 ### Annotation `@subject`
 
