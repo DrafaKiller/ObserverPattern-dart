@@ -6,8 +6,6 @@
 [Observer Pattern](https://en.wikipedia.org/wiki/Observer_pattern) implementation for Dart, using callbacks, streams and states.
 Subject code generator with annotations, to automatically generate an observable interface for any class.
 
-Click here to see how to setup the [Code Generation](#code-generation).
-
 ```dart
 @subject
 class User {
@@ -24,14 +22,16 @@ void main() {
     say: (message) => print('User says "$message"')
   );
   
-  user.say('Hello World!');
+  user.say('Hello world!');
 
   /* [Output]
-    John says "Hello world"
-    User said "Hello world"
+    John says "Hello world!"
+    User said "Hello world!"
   */
 }
 ```
+
+Click here to see how to setup the [Code Generation](#code-generation).
 
 ## Features
 
@@ -178,7 +178,6 @@ The generated class will be named `${className}Subject`.
 @subject
 class User {
   final String name;
-  String? thought;
 
   User(this.name);
 
@@ -197,7 +196,6 @@ The `@observe` annotation is used to indicate which methods and properties shoul
 ```dart
 class User {
   final String name;
-  String? thought;
 
   User(this.name);
 
@@ -272,9 +270,9 @@ part 'build.g.dart';
 @subject
 class User<T> {
   final String name;
-
-  // @dontObserve
   String? thought;
+
+  @dontObserve
   T value;
 
   User(this.name, this.value);
@@ -288,13 +286,16 @@ void main() {
   
   user.on(
     say: (message) => print('User said "$message"'),
+    thought: (value, previous) => print('User thought "$value"'),
   );
 
-  user.say('Hello world');
+  user.say('Hello world!');
+  user.thought = 'I am thinking...';
 
   /* [Output]
-    John says "Hello world"
-    User said "Hello world"
+    John says "Hello world!"
+    User said "Hello world!"
+    User thought "I am thinking..."
   */
 }
   ```

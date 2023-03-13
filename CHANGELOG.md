@@ -2,6 +2,7 @@
 
 Changed:
 - Documentation to help with setting up the Code Generator
+- Minor documentation improvements
 
 ## 0.1.1
 
