@@ -67,30 +67,29 @@ You have different bases to create a subject and observer, each with its feature
 
 ```dart
 final subject = Subject<String>();
-final observer = CallbackObserver<String>((subject, state) => print('Observer: $state'));
+final observer = Observer<String>((subject, state) => print('Observer: $state'));
 
 subject.attach(observer);
 subject.notify('Hello World!');
 ```
 
-### Stream - `Subject.stream` / `Observer.stream`
+### Async  - `Subject.sink` / `Observer.stream`
 
 ```dart
-final subject = StreamSubject<String>(sync: true);
-final observer = StreamObserver<String>(sync: true);
+final subject = Subject.sink<String>(sync: true);
+final observer = Observer.stream<String>(sync: true);
 
-subject.listen((state) => print('Subject: $state'));
 observer.listen((state) => print('Observer: $state'));
 
 subject.attach(observer);
-subject.notify('Hello World!');
+subject.add('Hello World!');
 ```
 
 ### Coupled - `Observer.coupled`
 
 ```dart
 final subject = Subject<String>();
-final observer = CallbackCoupledObserver<String>(
+final observer = Observer.coupled<String>(
   attached: (subject, observer) => print('Observer Attached'),
   detached: (subject, observer) => print('Observer Detached'),
 );
@@ -102,8 +101,8 @@ subject.notify('Hello World!');
 ### Stateful - `Subject.stateful` / `Observer.stateful`
 
 ```dart
-final subject = StatefulSubject<String>(state: 'Initial State', notifyOnAttach: true);
-final observer = StatefulObserver<String>();
+final subject = Subject.stateful<String>(state: 'Initial State', notifyOnAttach: true);
+final observer = Observer.stateful<String>();
 
 subject.attach(observer);
 subject.notify('Hello World!');
