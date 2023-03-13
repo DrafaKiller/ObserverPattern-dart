@@ -1,4 +1,4 @@
-[![Pub.dev package](https://img.shields.io/badge/pub.dev-subject-blue)](https://pub.dev/packages/subject)
+[![Pub.dev package](https://img.shields.io/badge/pub.dev-subject-blue?logo=dart)](https://pub.dev/packages/subject)
 [![GitHub repository](https://img.shields.io/badge/GitHub-ObserverPattern--dart-blue?logo=github)](https://github.com/DrafaKiller/ObserverPattern-dart)
 
 # Observer Pattern - Subject
