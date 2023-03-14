@@ -3,7 +3,7 @@ import 'package:subject/observer.dart';
 /* -= Stateful - Subject =- */
 
 void statefulSubject() {
-  final subject = StatefulSubject<String>(notifyOnAttach: true);
+  final subject = Subject.stateful<String>(notifyOnAttach: true);
 
   subject.notify('Hello World!');
   subject.attach(Observer((subject, state) => print('Observer: "$state"')));
@@ -21,11 +21,11 @@ void statefulSubject() {
 void statefulObserver() {
   final subject = Subject<String>();
 
-  final stateful = StatefulObserver<String>();
-  subject.attach(stateful);
+  final observer = Observer.stateful<String>();
+  subject.attach(observer);
 
   subject.notify('Hello World!');
-  print('The state is "${ stateful.state }"');
+  print('The state is "${ observer.state }"');
 
   /* [Output]
     The state is "Hello World!"

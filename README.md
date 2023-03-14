@@ -14,10 +14,10 @@ Subject code generator with annotations, to automatically generate an observable
 
 ## Features
 
-- Subject and Observer, for base implementation
-- Callback, Stream and Stateful mixins, to extend the Subject and Observer classes
+- Subject and Observer, as base implementation
+- Callback, Stream, Sink and Stateful mixins, to extend the Subject and Observer classes
 - Alternative implementations, such as **Publisher** and **EventEmitter**
-- `@subject` and `@observe` annotations, to generate an observable interface for any class
+- Code generation using `@subject` and `@observe`, to automatically generate an observable interface for any class
 
 ## Getting Started 
 
@@ -143,7 +143,7 @@ These commands will add the `build_runner` package as a development dependency a
 ### Annotation `@subject`
 
 By using the `@subject` annotation you can generate a subject class for the annotated class.
-The generated class will be named `${className}Subject`.
+The generated class will be named `${className}Subject`, and a mixin named `Observable${className}`.
 
 ```dart
 @subject
@@ -205,26 +205,27 @@ void main() {
   final subject = Subject<String>();
 
   final observer = Observer<String>((subject, state) => print('Observer 1: $state'));
+  final streamObserver = Observer.stream<String>()..listen((state) => print('Observer 2: $state'));
 
   subject.attach(observer);
-  subject.attach(Observer((subject, state) => print('Observer 2: $state')));
-  subject.attach(Observer.stream()..listen((state) => print('Observer 3: $state')));
+  subject.attach(streamObserver);
 
   subject.notify('Hello World!');
   print('There are ${subject.observers.length} observers attached to the subject.');
 
+  print('Detaching observer...');
   subject.detach(observer);
+
   subject.notify('Hello World, again!');
 
   /* [Output]
     Observer 1: Hello World!
     Observer 2: Hello World!
-    Observer 3: Hello World!
 
-    There are 3 observers attached to the subject.
+    There are 2 observers attached to the subject.
+    Detaching observer...
 
     Observer 2: Hello World, again!
-    Observer 3: Hello World, again!
   */
 }
   ```
@@ -342,7 +343,7 @@ import 'package:subject/observer.dart';
 /* -= Stateful - Subject =- */
 
 void statefulSubject() {
-  final subject = StatefulSubject<String>(notifyOnAttach: true);
+  final subject = Subject.stateful<String>(notifyOnAttach: true);
 
   subject.notify('Hello World!');
   subject.attach(Observer((subject, state) => print('Observer: "$state"')));
@@ -360,11 +361,11 @@ void statefulSubject() {
 void statefulObserver() {
   final subject = Subject<String>();
 
-  final stateful = StatefulObserver<String>();
-  subject.attach(stateful);
+  final observer = Observer.stateful<String>();
+  subject.attach(observer);
 
   subject.notify('Hello World!');
-  print('The state is "${ stateful.state }"');
+  print('The state is "${ observer.state }"');
 
   /* [Output]
     The state is "Hello World!"
@@ -426,10 +427,11 @@ void main() {
   final listener = events.on('message', (String data) => print('String: $data'));
   events.on('message', (int data) => print('Integer: $data'));
 
-  listener.listen((event) => print('Event: $event'));
-
   events.emit('message', 'Hello World!');
   events.emit('message', 42);
+
+  listener.cancel();
+  events.emit('message', 'Hello World, again!');
 
   // [Output]
   // String: Hello World!
