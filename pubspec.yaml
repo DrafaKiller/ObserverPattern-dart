@@ -6,6 +6,13 @@ version: 0.1.4
 repository: https://github.com/DrafaKiller/ObserverPattern-dart
 issue_tracker: https://github.com/DrafaKiller/ObserverPattern-dart/issues
 
+screenshots:
+ - description: 'Logo - Demonstration'
+   path: assets/demonstration.png
+
+ - description: 'Code Generation Example'
+   path: assets/code_generation_example.png
+
 environment:
   sdk: '>=2.17.6 <3.0.0'
 

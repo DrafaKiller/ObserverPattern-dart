@@ -1,5 +1,8 @@
 ## 0.1.4
 
+Added:
+- Package logo and screenshots
+
 Fixed:
 - `Observer.stream` arguments were not being passed to the `StreamObserver` constructor
 
