@@ -6,30 +6,7 @@
 [Observer Pattern](https://en.wikipedia.org/wiki/Observer_pattern) implementation for Dart, using callbacks, streams and states.
 Subject code generator with annotations, to automatically generate an observable interface for any class.
 
-```dart
-@subject
-class User {
-  final String name;
-  User(this.name);
-
-  void say(String message) => print('$name says "$message"');
-}
-
-void main() {
-  final user = UserSubject('John');
-
-  user.on(
-    say: (message) => print('User says "$message"')
-  );
-  
-  user.say('Hello World!');
-
-  /* [Output]
-    John says "Hello World!"
-    User said "Hello World!"
-  */
-}
-```
+![](https://raw.githubusercontent.com/DrafaKiller/ObserverPattern-dart/main/assets/code_generation_example.png)
 
 <p align="center">
   Click here to see how to setup the <a href="#code-generation">Code Generation</a>.
