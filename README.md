@@ -63,22 +63,14 @@ final subject = Subject<String>();
 ```
 
 Create an observer and attach it to the subject.
-An observer can be created using `Observer` or `Observer.stream`:
+An observer can be created using `Observer` or the alternative implementations:
 
 ```dart
-final observer = Observer<String>((subject, state) => print('Observer Callback: $state'));
-
-final observerStream = Observer.stream<String>()..listen((state) => print('Observer Stream: $state'));
-
-final observerCoupled = Observer.coupled<String>(
-  attached: (subject, observer) => print('Observer Attached'),
-  detached: (subject, observer) => print('Observer Detached'),
+final observer = Observer<String>(
+  (subject, state) => print('Observer Callback: $state')
 );
 
-final observerStateful = Observer.stateful<String>();
-
 subject.attach(observer);
-subject.attach(observerStream);
 ```
 
 Notify the subject to update the state and notify the observers:
