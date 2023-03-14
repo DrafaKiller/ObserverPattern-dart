@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import '../../implementations/base/stream.dart';
 import '../../observer.dart';
 import '../../subject.dart';
 
