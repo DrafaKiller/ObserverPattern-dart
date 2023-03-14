@@ -1,3 +1,8 @@
+## 0.1.4
+
+Fixed:
+- `Observer.stream` arguments were not being passed to the `StreamObserver` constructor
+
 ## 0.1.3
 
 Changed:

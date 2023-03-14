@@ -112,15 +112,15 @@ print('Subject State: ${subject.state}');
 You can create your own subject and observer classes, by extending the base classes and mixing the desired features:
 
 ### Subject
-- **StreamableSubject** - Transforms the subject into a stream, subscriptions are plugged into the subject as **StreamObserver**s
+- **StreamableSubject** - Transforms the subject into a stream, subscriptions are attached to the subject as auto disposable StreamObservers
 - **SinkableSubject** - Transforms the subject into a sink, which notifies the subject when a value is added
 - **SubjectState** - Allows the subject to have a persistent state
 
 ### Observer
+- **Cancelable** - Allows the observer to be canceled, which will detach it from the subject
 - **Callbackable** - Allows the observer to be instantiated with a callback
 - **StreamableObserver** - Transforms the observer into a stream, which can be listened to
 - **ObserverState** - Allows the observer to have a persistent state
-- **Cancelable** - Allows the observer to be canceled, which will detach it from the subject
 
 ## Code Generation
 

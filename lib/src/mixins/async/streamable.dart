@@ -24,7 +24,7 @@ mixin StreamableSubject<State> on Subject<State> implements Stream<State> {
 
   @override
   StreamSubscription<State> listen(void Function(State event)? onData, {Function? onError, void Function()? onDone, bool? cancelOnError}) {
-    final observer = StreamObserver<State>(sync: sync, autoDispose: true);
+    final observer = Observer.stream<State>(sync: sync, autoDispose: true);
     attach(observer);
     return observer.listen(onData, onError: onError, onDone: onDone, cancelOnError: cancelOnError);
   }

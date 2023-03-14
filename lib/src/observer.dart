@@ -42,7 +42,8 @@ abstract class Observer<State> {
     CoupledObserverCallback<State>? detached
   }) = CallbackCoupledObserver<State>;
 
-  static StreamObserver<State> stream<State>() => StreamObserver<State>();
+  static StreamObserver<State> stream<State>({ bool sync = true, bool autoDispose = false }) =>
+    StreamObserver<State>(sync: sync, autoDispose: autoDispose);
 
   static StatefulObserver<State> stateful<State>() => StatefulObserver<State>();
 }
