@@ -21,4 +21,5 @@ dependencies:
 
 dev_dependencies:
   lints: ^1.0.0
+  subject_gen: ^1.0.0
   very_good_analysis: ^3.1.0

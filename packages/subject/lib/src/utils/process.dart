@@ -2,8 +2,8 @@ import 'dart:io';
 
 extension PipeProcess on Process {
   Process toPrint() {
-    stdout.addStream(this.stdout);
-    stderr.addStream(this.stderr);
+    this.stdout.listen((event) => stdout.add(event));
+    this.stderr.listen((event) => stderr.add(event));
     return this;
   }
 }
