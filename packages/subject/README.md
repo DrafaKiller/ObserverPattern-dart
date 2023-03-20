@@ -9,8 +9,8 @@ Subject code generator with annotations, to automatically generate an observable
 ![](https://raw.githubusercontent.com/DrafaKiller/ObserverPattern-dart/tree/v1.0.0/packages/subject/assets/code_generation_example.png)
 
 <p align="center">
-  Click here to see how to setup the <a href="#code-generation">Code Generation</a>.<br>
-  Use <code>dart run subject:build</code> to generate the code. 
+  Use <code>dart run subject:build</code> to generate the code.<br>
+  Click here to see how to setup the <a href="#code-generation">Code Generation</a>.
 </p>
 
 ## Features
@@ -32,18 +32,15 @@ And import the package:
 import 'package:subject/subject.dart';
 ```
 
-## Usage
+## Basic Observer Pattern
 
-Create a subject by initializing or extending **Subject**, you can set the type of the state that will be passed to the observers:
+The observer pattern is a software design pattern in which an object, called the subject, maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods.
+
+You can create a subject and an observer, and attach the observer to the subject:
 
 ```dart
 final subject = Subject<String>();
-```
 
-Create an observer and attach it to the subject.
-An observer can be created using `Observer` or the alternative implementations:
-
-```dart
 final observer = Observer<String>(
   (subject, state) => print('Observer Callback: $state')
 );
@@ -51,15 +48,13 @@ final observer = Observer<String>(
 subject.attach(observer);
 ```
 
-Notify the subject to update the state and notify the observers:
+Now, you can notify the subject to update the state and notify the observers:
 
 ```dart
 subject.notify('Hello World!');
 ```
 
-## Subjects and Observers
-
-You have different bases to create a subject and observer, each with its features:
+There are many ways to implement the observer pattern, and this package provides several implementations, which can be mixed into the subject and observer classes.
 
 ### Callback - `Observer`
 
@@ -71,7 +66,7 @@ subject.attach(observer);
 subject.notify('Hello World!');
 ```
 
-### Async  - `Subject.sink` / `Observer.stream`
+#### Async - `Subject.sink` / `Observer.stream`
 
 ```dart
 final subject = Subject.sink<String>(sync: true);
@@ -135,16 +130,16 @@ Start the subject code generator by running the following command:
 
 Or instead, use the following commands to continuously generate the code:
 ```
-dart pub add build_runner -d
+dart pub add subject_gen -d
 dart run build_runner watch -d
 ```
 Or, using Flutter:
 ```
-flutter pub add build_runner -d
+flutter pub add subject_gen -d
 flutter pub run build_runner watch -d
 ```
 
-These commands will add the `build_runner` package as a development dependency and run it with the `watch -d` command, or `build -d` for only once. You only need to add it one time.
+These commands will add the `subject_gen` package as a development dependency and run the builder with the `watch -d` command, or `build -d` for only once. You only need to add the package one time.
 
 ### Annotation `@subject`
 
