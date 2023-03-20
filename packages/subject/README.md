@@ -54,6 +54,8 @@ Now, you can notify the subject to update the state and notify the observers:
 subject.notify('Hello World!');
 ```
 
+## Subjects and Observers
+
 There are many ways to implement the observer pattern, and this package provides several implementations, which can be mixed into the subject and observer classes.
 
 ### Callback - `Observer`
