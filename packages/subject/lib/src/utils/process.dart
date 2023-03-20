@@ -23,7 +23,7 @@ extension AsyncProcess on Future<Process> {
     FutureOr<R> Function()? success,
     FutureOr<R> Function()? fail,
   }) async => (
-    await Future.wait([
+    await Future.wait<R?>([
       this.done.then((_) => done?.call()),
       if (success != null) this.success.then((_) => success.call()).catchError((_) {}),
       if (fail != null) this.fail.then((_) => fail.call()).catchError((_) {}),

@@ -1,3 +1,8 @@
+## 1.0.3
+
+Fixed:
+- Not nullable generic, when using `subject:build` and `subject:watch` commands
+
 ## 1.0.2
 
 Changed:
