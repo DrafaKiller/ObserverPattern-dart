@@ -4,15 +4,21 @@ import 'dart:io';
 
 import 'package:subject/src/utils/process.dart';
 
+enum SDK { dart, flutter }
+
 /* -= Install Developer Dependency: subject_gen =- */
 
-Future<Process> installGenerator() async =>
-  (await Process.start('dart', [ 'pub', 'add', 'subject_gen', '-d' ])).toStd();
+Future<Process> installGenerator({ SDK sdk = SDK.dart }) async =>
+  sdk == SDK.dart
+    ? (await Process.start('dart', [ 'pub', 'add', '--dev', 'subject_gen' ])).toPrint()
+    : (await Process.start('flutter', [ 'pub', 'add', '--dev', 'subject_gen' ])).toPrint();
 
 /* -= Run build_runner: build/watch =- */
 
-Future<Process> runSubject({ bool watch = false }) async =>
- (await Process.start('dart', [ 'run', 'build_runner', if (!watch) 'build' else 'watch', '-d' ])).toStd();
+Future<Process> runSubject({ bool watch = false, SDK sdk = SDK.dart }) async =>
+  sdk == SDK.dart
+    ? (await Process.start('dart', [ 'run', 'build_runner', if (watch) 'watch' else 'build' ])).toPrint()
+    : (await Process.start('flutter', [ 'pub', 'run', 'build_runner', if (watch) 'watch' else 'build' ])).toPrint();
 
-Future<Process> buildSubject() => runSubject();
-Future<Process> watchSubject() => runSubject(watch: true);
+Future<Process> buildSubject({ SDK sdk = SDK.dart }) => runSubject(sdk: sdk);
+Future<Process> watchSubject({ SDK sdk = SDK.dart }) => runSubject(watch: true, sdk: sdk);

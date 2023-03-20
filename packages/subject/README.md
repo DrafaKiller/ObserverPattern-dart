@@ -127,19 +127,17 @@ Start the subject code generator by running the following command:
 - `dart run subject:build` - Build once
 - `dart run subject:watch` - Watch for changes and build
 
+Or, using Flutter:
+- `flutter pub run subject:build` - Build once
+- `flutter pub run subject:watch` - Watch for changes and build
 
-Or instead, use the following commands to continuously generate the code:
+Or instead, manually:
 ```
 dart pub add subject_gen -d
-dart run build_runner watch -d
-```
-Or, using Flutter:
-```
-flutter pub add subject_gen -d
-flutter pub run build_runner watch -d
+dart run build_runner build -d
 ```
 
-These commands will add the `subject_gen` package as a development dependency and run the builder with the `watch -d` command, or `build -d` for only once. You only need to add the package one time.
+These commands will add the `subject_gen` package as a development dependency and run the builder with the `build -d` command, or `watch -d` for continuous generation. You only need to add the package as a development dependency one time.
 
 ### Annotation `@subject`
 
@@ -440,7 +438,6 @@ void main() {
 }
   ```
 </details>
-
 
 ## Contributing
 
