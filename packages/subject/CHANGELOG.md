@@ -1,3 +1,12 @@
+## 1.0.2
+
+Changed:
+- Improved `subject:build` and `subject:watch` commands
+
+Fixed:
+- Get dependencies after installing the `subject_gen` package, when using the `subject:build` and `subject:watch` commands
+- Correct awaiting, when using the `subject:build` and `subject:watch` commands
+
 ## 1.0.1
 
 Fixed:
