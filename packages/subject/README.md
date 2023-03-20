@@ -9,8 +9,8 @@ Subject code generator with annotations, to automatically generate an observable
 ![](https://raw.githubusercontent.com/DrafaKiller/ObserverPattern-dart/v1.0.0/packages/subject/assets/code_generation_example.png)
 
 <p align="center">
-  Use <code>dart run subject:build</code> to generate the code.<br>
-  Click here to see how to setup the <a href="#code-generation">Code Generation</a>.
+  Click here to see how to setup the <a href="#code-generation">Code Generation</a>.<br>
+  Use <code>dart run subject:build</code> to generate the code.
 </p>
 
 ## Features
