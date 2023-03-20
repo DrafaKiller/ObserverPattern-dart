@@ -1,6 +1,9 @@
 name: subject_gen
-description: A starting point for Dart libraries or applications.
+description: >-
+  Dev-dependency for subject generation.
 version: 1.0.0
+repository: https://github.com/DrafaKiller/ObserverPattern-dart/tree/main/packages/subject_gen
+issue_tracker: https://github.com/DrafaKiller/ObserverPattern-dart/issues
 
 environment:
   sdk: '>=2.18.1 <3.0.0'
@@ -10,11 +13,9 @@ dependencies:
   build: ^2.3.1
   build_runner: ^2.3.3
   code_builder: ^4.4.0
-  collection: ^1.17.1
-  rxdart: ^0.27.7
   source_gen: ^1.2.7
-  subject: ^1.0.0
   
 dev_dependencies:
   lints: ^2.0.0
   very_good_analysis: ^3.1.0
+  
