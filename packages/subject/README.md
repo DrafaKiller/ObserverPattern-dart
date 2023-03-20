@@ -6,7 +6,7 @@
 [Observer Pattern](https://en.wikipedia.org/wiki/Observer_pattern) implementation for Dart, using callbacks, streams and states.
 Subject code generator with annotations, to automatically generate an observable interface for any class.
 
-![](https://raw.githubusercontent.com/DrafaKiller/ObserverPattern-dart/tree/v1.0.0/packages/subject/assets/code_generation_example.png)
+![](https://raw.githubusercontent.com/DrafaKiller/ObserverPattern-dart/v1.0.0/packages/subject/assets/code_generation_example.png)
 
 <p align="center">
   Use <code>dart run subject:build</code> to generate the code.<br>
