@@ -1,6 +1,6 @@
 name: subject_gen
 description: >-
-  Dev-dependency for subject generation.
+  Dev-dependency for subject generation. It is meant to be used as a support dependency for the subject package.
 version: 1.0.0
 repository: https://github.com/DrafaKiller/ObserverPattern-dart/tree/main/packages/subject_gen
 issue_tracker: https://github.com/DrafaKiller/ObserverPattern-dart/issues
