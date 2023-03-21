@@ -51,11 +51,12 @@ class SubjectGenerator extends Generator {
   }
 
   static String createSubject(ClassElement element, { Iterable<MethodElement> methods = const [], Iterable<PropertyAccessorElement> accessors = const [] }) {
+    methods = methods.where((method) => method.isPublic && !method.isOperator && !method.isStatic && !method.isAbstract);
     accessors = accessors.where((accessor) => accessor.isSetter);
 
     final output = StringBuffer();
 
-    output.writeln('class ${element.name}Subject${element.toCodeTypes()} = ${element.toCodeType().toSource()} with Observable${element.name};');
+    output.writeln('${ element.isAbstract ? 'abstract ' : '' }class ${element.name}Subject${element.toCodeTypes()} = ${element.toCodeType().toSource()} with Observable${element.name};');
 
     output.writeAll([
       for (final method in methods)
