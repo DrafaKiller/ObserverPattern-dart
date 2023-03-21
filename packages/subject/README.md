@@ -181,7 +181,22 @@ The other elements of the class will not be observable.
 
 The `@observe` annotation overrides the `@subject` annotation, so if you use both, only the elements annotated with `@observe` will be observable.
 
-### Listening to events
+### Annotation `@SubjectWith`
+
+Is used to generate a subject class with customized properties, such as subject and mixin names.
+
+```dart
+@SubjectWith(name: 'User', observable: false)
+class _User {
+  final String name;
+
+  _User(this.name);
+
+  void say(String message) => print('$name says "$message"');
+}
+```
+
+## Listening to events
 
 To listen to events, you can use the `.on()` and `.onBefore()` methods, which are included in the generated subject class.
 The `.on()` method contains all the generated methods and setters, making it easy to listen to events for the annotated class.
@@ -194,7 +209,7 @@ user.on(
 );
 ```
 
-## Example
+## Examples
 
 <details open>
   <summary>Subject / Observer <a href="https://github.com/DrafaKiller/ObserverPattern-dart/blob/v1.0.0/packages/subject/example/main.dart">(View on GitHub)</a></summary>

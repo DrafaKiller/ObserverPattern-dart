@@ -1,3 +1,8 @@
+## 1.1.0
+
+Added:
+- `SubjectWith` annotation to generate `Subject` classes with custom properties, such as subject and mixin names
+
 ## 1.0.6
 
 Fixed:
