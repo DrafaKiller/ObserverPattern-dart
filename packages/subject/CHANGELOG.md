@@ -1,3 +1,8 @@
+## 1.0.6
+
+Fixed:
+- Made `subject:build` and `subject:watch` commands use `--delete-conflicting-outputs` to avoid conflicts with `build_runner`
+
 ## 1.0.5
 
 Fixed:

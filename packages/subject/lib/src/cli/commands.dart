@@ -58,7 +58,7 @@ Future<Process> installGenerator({ SDK sdk = SDK.dart }) async =>
 
 Future<Process> runSubject({ bool watch = false, SDK sdk = SDK.dart }) async =>
   Process.start(
-    sdk.name, [ if (sdk == SDK.flutter) 'pub', 'run', 'build_runner', if (watch) 'watch' else 'build', ],
+    sdk.name, [ if (sdk == SDK.flutter) 'pub', 'run', 'build_runner', if (watch) 'watch' else 'build', '-d' ],
     mode: ProcessStartMode.inheritStdio,
     runInShell: true,
   );
