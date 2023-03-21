@@ -1,3 +1,8 @@
+## 1.0.5
+
+Fixed:
+- Inverted `isGeneratorInstalled()` check, when using `subject:build` and `subject:watch` commands
+
 ## 1.0.4
 
 Fixed:
