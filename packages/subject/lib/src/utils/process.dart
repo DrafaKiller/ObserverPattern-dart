@@ -24,9 +24,9 @@ extension AsyncProcess on Future<Process> {
     FutureOr<R> Function()? fail,
   }) async => (
     await Future.wait<R?>([
-      this.done.then((_) => done?.call()),
-      if (success != null) this.success.then((_) => success.call()).catchError((_) {}),
-      if (fail != null) this.fail.then((_) => fail.call()).catchError((_) {}),
+      this.done.then<R?>((_) => done?.call()),
+      if (success != null) this.success.then<R?>((_) => success.call()).catchError((_) => null),
+      if (fail != null) this.fail.then<R?>((_) => fail.call()).catchError((_) => null),
     ])
   ).firstWhere((element) => element != null, orElse: () => null);
 }

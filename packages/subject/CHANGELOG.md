@@ -1,3 +1,8 @@
+## 1.0.4
+
+Fixed:
+- `onError` callback not returning the correct value, when using `subject:build` and `subject:watch` commands
+
 ## 1.0.3
 
 Fixed:
@@ -9,8 +14,8 @@ Changed:
 - Improved `subject:build` and `subject:watch` commands
 
 Fixed:
-- Get dependencies after installing the `subject_gen` package, when using the `subject:build` and `subject:watch` commands
-- Correct awaiting, when using the `subject:build` and `subject:watch` commands
+- Get dependencies after installing the `subject_gen` package, when using `subject:build` and `subject:watch` commands
+- Correct awaiting, when using `subject:build` and `subject:watch` commands
 
 ## 1.0.1
 

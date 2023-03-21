@@ -6,7 +6,7 @@ import 'package:subject/src/utils/process.dart';
 Future<void> main(List<String> args) async {
   final sdk = args.isNotEmpty && args.first.toLowerCase() == 'flutter' ? SDK.flutter : SDK.dart;
 
-  if (!await isGeneratorInstalled(sdk: sdk)) {
+  if (await isGeneratorInstalled(sdk: sdk)) {
     print(SubjectBuilderMessages.installGenerator);
     await installGenerator(sdk: sdk).when(
       success: () {

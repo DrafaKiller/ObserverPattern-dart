@@ -2,7 +2,7 @@ name: subject
 description: >-
   Automatically generates an observable interface for any class.
   Observer Pattern implementation for Dart, generalized using mixins and multiple alternative interfaces.
-version: 1.0.3
+version: 1.0.4
 repository: https://github.com/DrafaKiller/ObserverPattern-dart/tree/main/packages/subject
 issue_tracker: https://github.com/DrafaKiller/ObserverPattern-dart/issues
 
