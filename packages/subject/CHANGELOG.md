@@ -1,3 +1,8 @@
+## 1.1.1
+
+Fixed:
+- `.onBefore()` wasn't called before, because of asyncronous `StreamController` initialization
+
 ## 1.1.0
 
 Added:
