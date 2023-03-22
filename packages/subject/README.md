@@ -196,6 +196,46 @@ class _User {
 }
 ```
 
+### Generated Code
+
+Applying the annotations will generate the following code:
+
+- Class `${className}Subject` - Overrides for the target methods and properties to be observed and notify.
+- Mixin `Observable${className}` - Contains the `.on()` and `.onBefore()` methods, with the generated interface, to listen to the target methods and properties.
+
+```dart
+@subject
+class User {
+  User(this.name);
+}
+
+void main() {
+  final user = UserSubject('John');
+}
+```
+
+The mixin, `Observable${className}`, can be applied to the target class, to add the `.on()` and `.onBefore()` methods.
+But this will require the target class to instantiate the subject class using a factory.
+
+This is useful to avoid having to create a subject class for each instance of the target class.
+Meaning that every instance of the target class will have the observable functionalities.
+
+Should be used like:
+
+```dart
+@subject
+class User<T, ...> with ObservableUser<T, ...> {
+  factory User(String name) => UserSubject._;
+  User._(this.name);
+}
+
+void main() {
+  final user = User('John');
+}
+```
+
+If you apply the `Observable` mixin without using the `Subject` class, the target methods and properties will not notify.
+
 ## Listening to events
 
 To listen to events, you can use the `.on()` and `.onBefore()` methods, which are included in the generated subject class.
@@ -208,6 +248,8 @@ user.on(
   say: (message) => print('User said "$message"'),
 );
 ```
+
+You can also listen to events using `.subject.on()`, `.subject.onMethod()` and `.subject.onProperty()` methods.
 
 ## Examples
 

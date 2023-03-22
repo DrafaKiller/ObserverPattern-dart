@@ -1,3 +1,23 @@
+## 2.0.0
+
+BREAKING CHANGE:
+> The way the generated classes and mixins are used has changed.
+> 
+> The `Observable${className}` mixin will have the `.on()` and `.onBefore()` methods, while the
+> `${className}Subject` class will have the necessary overrides to make the mixin work.
+> 
+> The generator was refactored to make it easier to add new features and fix bugs.
+
+Added:
+- `sync` option to `SubjectWith` to change its synchronous behavior
+
+Changed:
+- The generated classes and mixins are now used differently, the generated mixin is the interface, the generated class is the overriding wrapper
+- Renamed `observable` property in the generated `Subject` class to `subject`
+
+Fixed:
+- Subject properties were not being generated correctly, they were unable to be used
+
 ## 1.1.1
 
 Fixed:

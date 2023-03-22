@@ -52,7 +52,7 @@ class SubjectExecute<T extends Function, EventT extends SubjectEvent> {
   final T callback;
 
   late final StreamSubscription<EventT> subscription = stream.listen(
-    (event) => (event.execute  as Executor<T>).call(callback),
+    (event) => (event.execute as Executor<T>).call(callback),
   );
   
   Future<void> cancel() => subscription.cancel();

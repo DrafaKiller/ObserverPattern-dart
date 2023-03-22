@@ -4,7 +4,10 @@ import 'events.dart';
 import 'subject.dart';
 
 class ObservableSubjectController {
-  final _controller = StreamController<SubjectEvent>.broadcast(sync: true);
+  ObservableSubjectController({ bool sync = true }) :
+    _controller = StreamController<SubjectEvent>.broadcast(sync: sync);
+
+  final StreamController<SubjectEvent> _controller;
   late final ObservableSubject subject = ObservableSubject(_controller);
 
   /* -= Event Emitters =- */

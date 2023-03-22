@@ -1,5 +1,6 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:code_builder/code_builder.dart';
+import 'package:subject/subject.dart';
 import 'package:subject_gen/src/utils/code_analyzer.dart';
 import 'package:subject_gen/src/utils/string.dart';
 
@@ -13,8 +14,9 @@ class SubjectClass {
       String? subjectName,
       String? observableName,
       bool observable = true,
+      this.sync = true,
     }
-  ) : 
+  ) :
     subjectName = subjectName ?? '${element.name}Subject',
     observableName = [
       if (!observable) '_',
@@ -27,12 +29,35 @@ class SubjectClass {
       .where((accessor) => accessor.isSetter)
       .toList();
 
+  factory SubjectClass.options(
+    ClassElement element,
+    {
+      Iterable<MethodElement>? methods,
+      Iterable<PropertyAccessorElement>? accessors,
+      SubjectWith? options,
+    }
+  ) =>
+    SubjectClass(
+      element,
+      methods: methods,
+      accessors: accessors,
+      
+      subjectName: options?.name,
+      observableName: options?.observableName,
+      observable: options?.observable ?? true,
+      sync: options?.sync ?? true,
+    );
+
+  /* -= Properties =- */
+
   final ClassElement element;
   final List<MethodElement> methods;
   final List<PropertyAccessorElement> accessors;
 
   final String subjectName;
   final String observableName;
+
+  final bool sync;
 
   /* -= Typedefs =- */
 
@@ -48,7 +73,7 @@ class SubjectClass {
     for (final accessor in accessors)
       '''
         typedef ${ getAccessorFunctionName(accessor) } =
-          ${ accessor.toCodeType().rebuild((_) => _..returnType = refer('void')).toSource() };
+          ${ accessor.variable.type.toCode().toSource() };
       ''',
   ].join('\n');
 
@@ -128,34 +153,56 @@ class SubjectClass {
 
   /* -= Elements =- */
 
-  String get subject => [
-    if (element.isAbstract) 'abstract',
-    'class', subjectName + element.toCodeTypes(),
-    '=',
-    element.toCodeType().toSource(), 'with', observableName, ';',
-  ].join(' ');
+  String get subject => '''
+    ${
+      [
+        if (element.isAbstract) 'abstract',
+        'class', subjectName + element.toCodeTypes(),
+        '=', element.toCodeType().toSource(),
+        'with',
+          '$observableName${element.toCodeTypes()}', ',',
+          '_$subjectName${element.toCodeTypes()}', ';',
+      ].join(' ')
+    }
+    $subjectMixin
+  ''';
+
+  String get subjectMixin => 
+    Mixin((_) => _
+      ..name = '_$subjectName'
+      ..types.addAll(element.typeParameters.map((type) => type.toCode()))
+      ..on = refer('$observableName${element.toCodeTypes()}, ${ element.toCodeType().toSource() }')
+
+      /* -= Overrides =- */
+
+      ..methods.addAll([
+        for (final method in methods) getOverrideMethod(method),
+        for (final accessor in accessors) getOverrideProperty(accessor),
+      ]),
+    ).toSource();
 
   String get observable => 
     Mixin((_) => _
       ..name = observableName
       ..types.addAll(element.typeParameters.map((type) => type.toCode()))
-      ..on = element.toCodeType()
+      ..implements.add(refer('ObservableSubjectClass'))
     
       /* -= Controller and Observable =- */
 
       ..fields.add(
         Field((_) => _
           ..name = '_controller'
-          ..assignment = const Code('ObservableSubjectController()')
+          ..assignment = Code('ObservableSubjectController(${ !sync ? 'sync: false' : '' })')
           ..modifier = FieldModifier.final$,
         ),
       )
       
       ..methods.add(
         Method((_) => _
-          ..name = 'observable'
+          ..name = 'subject'
           ..type = MethodType.getter
           ..returns = refer('ObservableSubject')
+          ..annotations.add(refer('override'))
           ..body = const Code('return _controller.subject;'),
         ),
       )
@@ -165,13 +212,6 @@ class SubjectClass {
       ..methods.addAll([
         createOn(),
         createOn(before: true),
-      ])
-
-      /* -= Overrides =- */
-
-      ..methods.addAll([
-        for (final method in methods) getOverrideMethod(method),
-        for (final accessor in accessors) getOverrideProperty(accessor),
       ]),
     ).toSource();
 

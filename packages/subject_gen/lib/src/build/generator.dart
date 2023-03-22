@@ -10,8 +10,6 @@ import 'package:subject_gen/src/build/subject_class.dart';
 
 import '../utils/analyzer.dart';
 
-
-
 class SubjectGenerator extends Generator {
   @override
   FutureOr<String?> generate(LibraryReader library, BuildStep buildStep) async {
@@ -36,14 +34,11 @@ class SubjectGenerator extends Generator {
 
       if (observeMethods.isNotEmpty || observeAccessors.isNotEmpty) {
         output.writeln(
-          SubjectClass(
+          SubjectClass.options(
             element,
             methods: observeMethods,
             accessors: observeAccessors,
-
-            subjectName: options?.name,
-            observableName: options?.observableName,
-            observable: options?.observable ?? true,
+            options: options
           ).toSource(),
         );
         continue;
@@ -51,14 +46,11 @@ class SubjectGenerator extends Generator {
       
       if (element.hasStringAnnotation(subject) || options != null) {
         output.writeln(
-          SubjectClass(
+          SubjectClass.options(
             element,
             methods: element.methods.where((method) => !method.hasStringAnnotation(dontObserve)),
             accessors: element.accessors.where((accessor) => !accessor.variable.hasStringAnnotation(dontObserve)),
-            
-            subjectName: options?.name,
-            observableName: options?.observableName,
-            observable: options?.observable ?? true,
+            options: options
           ).toSource(),
         );
         continue;

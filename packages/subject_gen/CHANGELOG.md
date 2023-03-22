@@ -1,7 +1,10 @@
+## 2.0.0
+
+Linked with [subject@v2.0.0](https://pub.dev/packages/subject/changelog#200)
+
 ## 1.1.0
 
-Added:
-- `SubjectWith` annotation to generate `Subject` classes with custom properties
+Linked with [subject@v1.1.0](https://pub.dev/packages/subject/changelog#110)
 
 ## 1.0.1
 
@@ -10,4 +13,4 @@ Fixed:
 
 ## 1.0.0
 
-Initial release: Subject Generator
+Linked with [subject@v1.0.0](https://pub.dev/packages/subject/changelog#100)

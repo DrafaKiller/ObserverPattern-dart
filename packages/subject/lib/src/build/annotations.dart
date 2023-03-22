@@ -5,11 +5,13 @@ const dontObserve = 'dontObserve';
 class SubjectWith {
   const SubjectWith({
     this.name,
-    this.observable = true,
     this.observableName,
+    this.observable = true,
+    this.sync = true,
   });
 
   final String? name;
-  final bool observable;
   final String? observableName;
+  final bool observable;
+  final bool sync;
 }

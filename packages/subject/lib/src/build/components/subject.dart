@@ -1,27 +1,36 @@
 import 'dart:async';
 
+import 'package:rxdart/transformers.dart';
+
 import 'events.dart';
 
 class ObservableSubject {
-  const ObservableSubject(this._controller);
+  ObservableSubject(this._controller);
   
   final StreamController<SubjectEvent> _controller;
 
   /* -= Event Streams =- */
 
   Stream<SubjectEvent> get events => _controller.stream;
-  Stream<SubjectMethod> get methods => events.where((event) => event is SubjectMethod).cast<SubjectMethod>();
-  Stream<SubjectProperty> get properties => events.where((event) => event is SubjectProperty).cast<SubjectProperty>();
+  Stream<SubjectMethod> get methods => events.whereType<SubjectMethod>();
+  Stream<SubjectProperty> get properties => events.whereType<SubjectProperty>();
 
   /* -= Event Listeners =- */
+
+  Stream<T> on<T extends SubjectEvent>(String name, { bool before = false }) =>
+    events
+      .whereType<T>()
+      .where((event) => event.name == name && event.before == before);
   
   Stream<SubjectMethod<T>> onMethod<T extends Function>(String name, { bool before = false }) =>
-    methods
-      .where((event) => event is SubjectMethod<T> && event.name == name && event.before == before)
-      .cast<SubjectMethod<T>>();
+    on<SubjectMethod<T>>(name, before: before);
 
   Stream<SubjectProperty<T>> onProperty<T>(String name, { bool before = false }) =>
-    properties
-      .where((event) => event is SubjectProperty<T> && event.name == name && event.before == before)
-      .cast<SubjectProperty<T>>();
+    on<SubjectProperty<T>>(name, before: before);
+}
+
+/* -= Class Wrapper =- */
+
+mixin ObservableSubjectClass {
+  ObservableSubject get subject;
 }

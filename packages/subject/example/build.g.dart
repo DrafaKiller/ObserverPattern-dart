@@ -6,13 +6,37 @@ part of 'build.dart';
 // SubjectGenerator
 // **************************************************************************
 
-class UserSubject<T> = User<T> with ObservableUser;
 typedef UserSubjectSayMethod<T> = void Function(String message);
+
 typedef UserSubjectThoughtAccessor<T> = String?;
-mixin ObservableUser<T> on User<T> {
+
+class UserSubject<T> = User<T> with ObservableUser<T>, _UserSubject<T>;
+mixin _UserSubject<T> on ObservableUser<T>, User<T> {
+  @override
+  void say(String message) {
+    _controller.method(
+        'say', (UserSubjectSayMethod<T> callback) => callback(message),
+        before: true);
+    final result = super.say(message);
+    _controller.method(
+        'say', (UserSubjectSayMethod<T> callback) => callback(message));
+    return result;
+  }
+
+  @override
+  set thought(String? value) {
+    final previous = super.thought;
+    _controller.property('thought', value, previous, before: true);
+    super.thought = value;
+    _controller.property('thought', value, previous);
+  }
+}
+
+mixin ObservableUser<T> implements ObservableSubjectClass {
   final _controller = ObservableSubjectController();
 
-  ObservableSubject get observable {
+  @override
+  ObservableSubject get subject {
     return _controller.subject;
   }
 
@@ -38,24 +62,5 @@ mixin ObservableUser<T> on User<T> {
       if (thought != null)
         _controller.onProperty('thought', thought, before: true),
     ]);
-  }
-
-  @override
-  void say(String message) {
-    _controller.method(
-        'say', (UserSubjectSayMethod<T> callback) => callback(message),
-        before: true);
-    final result = super.say(message);
-    _controller.method(
-        'say', (UserSubjectSayMethod<T> callback) => callback(message));
-    return result;
-  }
-
-  @override
-  set thought(String? value) {
-    final previous = super.thought;
-    _controller.property('thought', value, previous, before: true);
-    super.thought = value;
-    _controller.property('thought', value, previous);
   }
 }

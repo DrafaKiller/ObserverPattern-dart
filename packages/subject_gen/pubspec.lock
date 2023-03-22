@@ -253,10 +253,10 @@ packages:
     dependency: transitive
     description:
       name: meta
-      sha256: "12307e7f0605ce3da64cf0db90e5fcab0869f3ca03f76be6bb2991ce0a55e82b"
+      sha256: "3c74dbf8763d36539f114c799d8a2d87343b5067e9d796ca22b5eb8437090ee3"
       url: "https://pub.dev"
     source: hosted
-    version: "1.9.0"
+    version: "1.9.1"
   mime:
     dependency: transitive
     description:
@@ -380,11 +380,10 @@ packages:
   subject:
     dependency: "direct main"
     description:
-      name: subject
-      sha256: "2054f13647169d7d7667f1a4e371f53cc392f761053eeb322905fa0b5ef6248f"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
+      path: "../subject"
+      relative: true
+    source: path
+    version: "2.0.0"
   term_glyph:
     dependency: transitive
     description:
